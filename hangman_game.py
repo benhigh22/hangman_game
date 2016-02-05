@@ -17,7 +17,7 @@ random_word = random.choice(WORDS)
 
 counter = 0
 #guesses = ""
-blanks = list("_" * len(random_word))
+blanks = list(("_" * len(random_word)))
 num_tries = 0
 print ("Your secret word has " + str(len(str(random_word))) + " letters in it, shown by the blank spaces below.")
 print (" ")#just for spacing
@@ -55,13 +55,13 @@ while num_tries < 8:
         num_tries += 1
         print("Sorry that's wrong. Be careful that was wrong guess number " + str(num_tries) + " out of 8.")
         print (" ")#just for spacing
-        print("LETTER(S) PREVIOUSLY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
+        print("         LETTER(S) ALREADY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
         print (" ")#just for spacing
 
     elif guess in random_word:
         print ("Great guess!")
         print (" ")#just for spacing
-        print("LETTER(S) PREVIOUSLY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
+        print("         LETTER(S) ALREADY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
         print (" ")
 
     guessed_letters.append(guess)
@@ -70,4 +70,4 @@ while num_tries < 8:
     if num_tries == 8:
         print (" ")#just for spacing
         print ("Sorry, you lose. Better luck next time!")
-        print ("Your secret word was " + random_word)
+        print ("Your secret word was " + random_word.upper())
