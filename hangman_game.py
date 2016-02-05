@@ -2,21 +2,21 @@
 import random
 name = input("Hello there, what's your name? ")
 
-if len(name) > 0 and name.isalpha():
-    print (" ")#just for spacing
-    print ("Hi, " + name.upper() + " let's play HANGMAN! ")
-else:
-    print (" ")#just for spacing
-    print ("That's a strange name, but who am I to judge?! Let's play HANGMAN!")
-
-print (" ")#just for spacing
+while True:
+    if len(name) > 0 and name.isalpha():
+        print ("Hi " + name.upper() + " let's play HANGMAN!")
+        break
+    else:
+        print ("Sorry, that's not a valid name.")
+        name = input("Enter your name. ")
+        continue
 
 random_file = "/usr/share/dict/words"
 WORDS = open(random_file).read().splitlines()
 random_word = random.choice(WORDS)
 
 counter = 0
-guesses = ""
+#guesses = ""
 blanks = list("_" * len(random_word))
 num_tries = 0
 print ("Your secret word has " + str(len(str(random_word))) + " letters in it, shown by the blank spaces below.")
@@ -31,7 +31,7 @@ while num_tries < 8:
     print (" ")  #just for spacing
     print ("Pick any letter! ")
     guess = input().lower()
-
+    other_guess = str(list(guess))
     counter = 0
 
     for character in random_word:
@@ -55,10 +55,15 @@ while num_tries < 8:
         num_tries += 1
         print("Sorry that's wrong. Be careful that was wrong guess number " + str(num_tries) + " out of 8.")
         print (" ")#just for spacing
+        print("LETTER(S) PREVIOUSLY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
+        print (" ")#just for spacing
 
     elif guess in random_word:
         print ("Great guess!")
+        print (" ")#just for spacing
+        print("LETTER(S) PREVIOUSLY GUESSED: " + str(str(guessed_letters) + " LAST LETTER GUESSED: " + other_guess))
         print (" ")
+
     guessed_letters.append(guess)
     print(blanks)
 
